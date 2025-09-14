@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Gerenciamento de Surebets</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-money-bill-wave"></i> Gerenciamento de Surebets</h1>
+            <p>Controle completo das suas apostas garantidas</p>
+        </header>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>TOTAL APOSTADO</h3>
+                <div class="stat-value" id="totalApostado">R$ 0,00</div>
+            </div>
+            <div class="stat-card">
+                <h3>LUCRO TOTAL</h3>
+                <div class="stat-value profit" id="lucroTotal">R$ 0,00</div>
+            </div>
+            <div class="stat-card">
+                <h3>% MÉDIO</h3>
+                <div class="stat-value percentage" id="percentualMedio">0,00%</div>
+            </div>
+            <div class="stat-card">
+                <h3>TOTAL APOSTAS</h3>
+                <div class="stat-value count" id="totalApostas">0</div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-container">
+            <form id="surebetForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="odd1">Odd Casa 1</label>
+                        <input type="number" id="odd1" step="0.01" min="1.01" placeholder="2.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="casa1">Casa de Aposta 1</label>
+                        <select id="casa1" required>
+                            <option value="">Selecione...</option>
+                            <option value="Bet365">Bet365</option>
+                            <option value="Betano">Betano</option>
+                            <option value="KTO">KTO</option>
+                            <option value="Rivalo">Rivalo</option>
+                            <option value="Betfair">Betfair</option>
+                            <option value="1xBet">1xBet</option>
+                            <option value="Pinnacle">Pinnacle</option>
+                            <option value="Sportingbet">Sportingbet</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="odd2">Odd Casa 2</label>
+                        <input type="number" id="odd2" step="0.01" min="1.01" placeholder="2.20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="casa2">Casa de Aposta 2</label>
+                        <select id="casa2" required>
+                            <option value="">Selecione...</option>
+                            <option value="Bet365">Bet365</option>
+                            <option value="Betano">Betano</option>
+                            <option value="KTO">KTO</option>
+                            <option value="Rivalo">Rivalo</option>
+                            <option value="Betfair">Betfair</option>
+                            <option value="1xBet">1xBet</option>
+                            <option value="Pinnacle">Pinnacle</option>
+                            <option value="Sportingbet">Sportingbet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="valorTotal">Valor Total (R$)</label>
+                        <input type="number" id="valorTotal" step="0.01" min="1" placeholder="100.00" required>
+                    </div>
+                </div>
+
+                <!-- Surebet Results -->
+                <div class="surebet-results" id="surebetResults">
+                    <div class="result-row">
+                        <div class="result-item">
+                            <span class="label">Arbitragem:</span>
+                            <span class="value" id="arbitragem">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Lucro %:</span>
+                            <span class="value" id="lucroPercentual">-</span>
+                        </div>
+                    </div>
+                    <div class="result-row">
+                        <div class="result-item">
+                            <span class="label">Aposta Casa 1:</span>
+                            <span class="value" id="apostaCasa1">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Aposta Casa 2:</span>
+                            <span class="value" id="apostaCasa2">-</span>
+                        </div>
+                    </div>
+                    <div class="result-row">
+                        <div class="result-item">
+                            <span class="label">Lucro Garantido:</span>
+                            <span class="value profit" id="lucroGarantido">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-add">
+                    <i class="fas fa-plus"></i> ADICIONAR SUREBET
+                </button>
+            </form>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table id="apostasTable">
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>ODDS</th>
+                        <th>CASAS</th>
+                        <th>VALOR TOTAL</th>
+                        <th>DISTRIBUIÇÃO</th>
+                        <th>LUCRO</th>
+                        <th>%</th>
+                        <th>AÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody id="apostasTableBody">
+                    <!-- Dados serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn-export" id="exportBtn">
+                <i class="fas fa-download"></i> EXPORTAR CSV
+            </button>
+            <button class="btn-clear" id="clearBtn">
+                <i class="fas fa-trash"></i> LIMPAR DADOS
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
